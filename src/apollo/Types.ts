@@ -4,6 +4,15 @@ export interface Character {
   image: string;
 }
 
+interface Info {
+  next: number;
+  count: number;
+  pages: number;
+}
+
 export interface Characters {
-  results: Character[];
+  characters: {
+    results: Character[];
+  };
+  info: Info;
 }

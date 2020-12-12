@@ -12,4 +12,10 @@ export const STYLES = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: COLORS.offWhite,
   },
+  errorText: {
+    alignSelf: 'center',
+    textAlign: 'center',
+    fontSize: 16,
+    marginTop: 20,
+  },
 });
