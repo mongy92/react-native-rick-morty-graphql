@@ -6,7 +6,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: COLORS.white,
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
   image: {
     width: 70,

@@ -1,11 +1,15 @@
 import { StyleSheet } from 'react-native';
 
+export const COLORS = {
+  white: '#FFF',
+  offWhite: '#DDD',
+};
 export const STYLES = StyleSheet.create({
   container: {
     flex: 1,
   },
+  separator: {
+    borderTopWidth: 1,
+    borderTopColor: COLORS.offWhite,
+  },
 });
-
-export const COLORS = {
-  white: '#FFF',
-};

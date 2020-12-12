@@ -1,23 +1,30 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+import { View } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 import { Character } from '../../apollo/Types';
+import { STYLES } from '../../common';
 import { CharacterCard } from '../../components';
+import fake_chars from './fake_chars';
 
-const dummy_char = {
-  id: '516',
-  name: 'Wasp Rick',
-  image: 'https://rickandmortyapi.com/api/character/avatar/516.jpeg',
-};
-const CharacterList = () => {
+const CharacterList: React.FC = () => {
   const navigation = useNavigation();
 
-  const onPressCharacter = (char: Character) => {
+  const onPressCharacter = (character: Character) => {
     navigation.navigate('CharacterDetails', {
-      id: char.id,
-      name: char.name,
+      id: character.id,
+      name: character.name,
     });
   };
-  return <CharacterCard character={dummy_char} onPress={() => onPressCharacter(dummy_char)} />;
+  return (
+    <FlatList
+      data={fake_chars}
+      renderItem={({ item }) => (
+        <CharacterCard character={item} onPress={() => onPressCharacter(item)} />
+      )}
+      ItemSeparatorComponent={() => <View style={STYLES.separator} />}
+    />
+  );
 };
 
 export default CharacterList;
