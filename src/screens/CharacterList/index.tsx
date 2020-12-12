@@ -18,7 +18,7 @@ const CharacterList: React.FC = () => {
   /** fetch characters query */
   const { loading, data, error, fetchMore } = useQuery<CharactersQueryType>(FETCH_CHARACTERS, {
     variables: {
-      page: 33,
+      page: 1,
     },
   });
 
