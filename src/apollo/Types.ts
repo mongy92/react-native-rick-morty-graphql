@@ -10,9 +10,11 @@ interface Info {
   pages: number;
 }
 
+export interface CharactersQueryType {
+  characters: Characters;
+}
+
 export interface Characters {
-  characters: {
-    results: Character[];
-  };
+  results: Character[];
   info: Info;
 }
