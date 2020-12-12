@@ -10,6 +10,8 @@ const client = new ApolloClient({
 });
 
 export default client;
+
+/** Example to test the graphql api */
 client
   .query({
     query: FETCH_CHARACTERS,

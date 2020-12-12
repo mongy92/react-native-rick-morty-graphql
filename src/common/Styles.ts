@@ -5,3 +5,7 @@ export const STYLES = StyleSheet.create({
     flex: 1,
   },
 });
+
+export const COLORS = {
+  white: '#FFF',
+};
