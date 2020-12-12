@@ -1,8 +1,7 @@
 import React from 'react';
-import Splash from './screens/Splash';
-
+import Navigation from './navigation';
 const App = () => {
-  return <Splash />;
+  return <Navigation />;
 };
 
 export default App;
