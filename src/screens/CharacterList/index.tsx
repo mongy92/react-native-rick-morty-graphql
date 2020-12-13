@@ -1,26 +1,55 @@
-import { useQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { FETCH_CHARACTERS } from '../../apollo/Queries';
 import { Character, CharactersQueryType } from '../../apollo/Types';
-import { STYLES } from '../../common';
-import { CharacterCard } from '../../components';
+import { COLORS, STYLES } from '../../common';
+import { CharacterCard, SearchBox } from '../../components';
+import _ from 'lodash';
 import styles from './styles';
+import { errorHandler } from '../../utils/errorhandler';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const CharacterList: React.FC = () => {
   const navigation = useNavigation();
   const flatlistRef = useRef<any>();
 
   const [loadingMore, setLoadingMore] = useState<boolean>(false);
+  const [searchText, setSearchText] = useState<string>('');
 
   /** fetch characters query */
-  const { loading, data, error, fetchMore } = useQuery<CharactersQueryType>(FETCH_CHARACTERS, {
-    variables: {
-      page: 1,
+  const [getCharacters, { data, fetchMore, loading, error }] = useLazyQuery<CharactersQueryType>(
+    FETCH_CHARACTERS,
+    {
+      variables: {
+        page: 1,
+      },
     },
-  });
+  );
+
+  // fetch character at the beginnig
+  useEffect(() => {
+    getCharacters();
+  }, []);
+
+  /** variables section */
+  const queryData = data && data.characters;
+  const showNoMoreMessage = queryData && !queryData.info.next && queryData.info.pages > 1;
+  const characters = queryData ? queryData.results : null;
+  const canLoadMore = queryData && queryData.info.next && !loadingMore;
+
+  /** debounce search function used to call the query after 500ms  */
+  const searchHander: (value: string) => void = _.debounce(async (value) => {
+    getCharacters({
+      variables: {
+        filter: {
+          name: value,
+        },
+      },
+    });
+  }, 500);
 
   const onPressCharacter = (character: Character) => {
     navigation.navigate('CharacterDetails', {
@@ -29,12 +58,9 @@ const CharacterList: React.FC = () => {
     });
   };
 
-  /**
-   * function used to load more characters .
-   * it depends on the next page and loadingMore state
-   * */
+  /** function used to load more characters * */
   const loadMoreHandler = async () => {
-    if (!data || !data.characters.info.next || loadingMore) {
+    if (!canLoadMore || !fetchMore) {
       return null;
     } else {
       setLoadingMore(true);
@@ -46,26 +72,20 @@ const CharacterList: React.FC = () => {
       setLoadingMore(false);
     }
   };
-
-  if (error) {
-    return <Text style={STYLES.errorText}>Something went wrong, Please try again later.!</Text>;
-  }
-  if (loading) {
-    return <ActivityIndicator size={'large'} />;
-  }
-
+  /** render footer (loading | no more message | nothing) */
   const renderFooter = () => {
     if (data && loadingMore) {
-      return <ActivityIndicator />;
-    } else if (data && !data.characters.info.next) {
+      return <ActivityIndicator style={styles.indicator} />;
+    } else if (showNoMoreMessage) {
       return (
         <View style={styles.noMoreContainer}>
           <Text style={styles.noMoreText}>No More Characters...</Text>
-          <Text
-            style={styles.topText}
-            onPress={() => flatlistRef.current.scrollToIndex({ index: 0 })}>
-            Back To Top
-          </Text>
+          <Icon
+            name={'arrow-up'}
+            size={25}
+            color={COLORS.gray}
+            onPress={() => flatlistRef.current.scrollToIndex({ index: 0 })}
+          />
         </View>
       );
     } else {
@@ -74,19 +94,36 @@ const CharacterList: React.FC = () => {
   };
 
   return (
-    <FlatList
-      ref={flatlistRef}
-      data={data?.characters.results}
-      renderItem={({ item }) => (
-        <CharacterCard character={item} onPress={() => onPressCharacter(item)} />
+    <>
+      <SearchBox
+        placeholder="Search"
+        value={searchText}
+        onChangeText={(text) => {
+          setSearchText(text);
+          searchHander(text);
+        }}
+      />
+      {loading && <ActivityIndicator style={styles.indicator} size={'small'} />}
+      {error ? (
+        <Text style={STYLES.errorText}>{errorHandler(error)}</Text>
+      ) : (
+        characters && (
+          <FlatList
+            ref={flatlistRef}
+            data={characters}
+            renderItem={({ item }) => (
+              <CharacterCard character={item} onPress={() => onPressCharacter(item)} />
+            )}
+            ItemSeparatorComponent={() => <View style={STYLES.separator} />}
+            ListFooterComponent={renderFooter}
+            contentContainerStyle={styles.list}
+            keyExtractor={(item) => `${item.id}`}
+            onEndReachedThreshold={0}
+            onEndReached={loadMoreHandler}
+          />
+        )
       )}
-      ItemSeparatorComponent={() => <View style={STYLES.separator} />}
-      ListFooterComponent={renderFooter}
-      contentContainerStyle={styles.list}
-      keyExtractor={(item) => `${item.id}`}
-      onEndReachedThreshold={0}
-      onEndReached={loadMoreHandler}
-    />
+    </>
   );
 };
 

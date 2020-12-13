@@ -10,7 +10,7 @@ export const cache: InMemoryCache = new InMemoryCache({
     Query: {
       fields: {
         characters: {
-          keyArgs: false,
+          keyArgs: ['filter'],
           merge(existing: Characters, incoming: Characters) {
             let results: Character[] = [];
             if (existing && existing.results.length > 0) {

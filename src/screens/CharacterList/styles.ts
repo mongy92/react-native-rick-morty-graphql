@@ -18,4 +18,7 @@ export default StyleSheet.create({
   topText: {
     fontWeight: 'bold',
   },
+  indicator: {
+    padding: 10,
+  },
 });
