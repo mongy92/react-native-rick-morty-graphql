@@ -2,19 +2,31 @@ export interface Character {
   id: string;
   name: string;
   image: string;
+  species?: string;
+  gender?: string;
+  episode: Episode[];
 }
 
-interface Info {
-  next: number;
-  count: number;
-  pages: number;
+export interface Characters {
+  results: Character[];
+  info: Info;
 }
 
 export interface CharactersQueryType {
   characters: Characters;
 }
 
-export interface Characters {
-  results: Character[];
-  info: Info;
+export interface CharacterQueryType {
+  character: Character;
+}
+interface Episode {
+  id: string;
+  name: string;
+  air_date: string;
+  episode: string;
+}
+interface Info {
+  next: number;
+  count: number;
+  pages: number;
 }

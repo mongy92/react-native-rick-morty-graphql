@@ -4,6 +4,7 @@ export const COLORS = {
   white: '#FFF',
   offWhite: '#DDD',
   gray: '#888',
+  dark: '#333',
 };
 export const STYLES = StyleSheet.create({
   container: {
