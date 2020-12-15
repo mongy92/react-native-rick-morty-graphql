@@ -5,6 +5,7 @@ export interface Character {
   species?: string;
   gender?: string;
   episode: Episode[];
+  status?: string;
 }
 
 export interface Characters {
@@ -19,7 +20,7 @@ export interface CharactersQueryType {
 export interface CharacterQueryType {
   character: Character;
 }
-interface Episode {
+export interface Episode {
   id: string;
   name: string;
   air_date: string;

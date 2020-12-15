@@ -2,9 +2,12 @@ import { StyleSheet } from 'react-native';
 
 export const COLORS = {
   white: '#FFF',
-  offWhite: '#DDD',
+  offWhite: '#DFDFDF',
   gray: '#888',
   dark: '#333',
+  black: '#000',
+  green: 'green',
+  red: 'red',
 };
 export const STYLES = StyleSheet.create({
   container: {

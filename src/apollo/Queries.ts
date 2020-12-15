@@ -24,6 +24,8 @@ export const FETCH_CHARACTER_DETAILS = gql`
       name
       image
       species
+      gender
+      status
       episode {
         id
         name
