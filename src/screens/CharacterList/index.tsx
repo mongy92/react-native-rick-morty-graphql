@@ -9,7 +9,7 @@ import { COLORS, STYLES } from '../../common';
 import { CharacterCard, SearchBox } from '../../components';
 import _ from 'lodash';
 import styles from './styles';
-import { errorHandler } from '../../utils/errorhandler';
+import { errorHandler } from '../../utils';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const CharacterList: React.FC = () => {

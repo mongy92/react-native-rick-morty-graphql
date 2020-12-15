@@ -19,14 +19,15 @@ export default () => (
     <MainStack.Screen
       component={CharacterList}
       name="CharacterList"
-      options={{ title: 'Characters' }}
+      options={{ title: 'Character List' }}
     />
     <MainStack.Screen
       component={CharacterDetails}
       name="CharacterDetails"
-      options={({ route: { params } }: any) => ({
-        title: params ? params.name : '',
-      })}
+      options={{
+        title: '',
+        headerTransparent: true,
+      }}
     />
   </MainStack.Navigator>
 );
