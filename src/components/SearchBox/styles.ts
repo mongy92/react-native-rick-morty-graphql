@@ -1,19 +1,20 @@
 import { StyleSheet } from 'react-native';
-import { COLORS } from '../../common';
+import { COLORS, STYLES } from '../../common';
 
 export default StyleSheet.create({
   search: {
     height: 60,
     backgroundColor: COLORS.white,
-    width: '100%',
-    borderRadius: 5,
+    margin: 20,
+    borderRadius: 10,
     paddingHorizontal: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     alignSelf: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.gray,
+    borderWidth: 1,
+    borderColor: COLORS.offWhite,
+    ...STYLES.shaddow,
   },
   leftIconPlacholder: {
     flexDirection: 'row',

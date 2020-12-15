@@ -1,21 +1,29 @@
 import { StyleSheet } from 'react-native';
-import { COLORS } from '../../common';
+import { COLORS, STYLES } from '../../common';
 
 export default StyleSheet.create({
   card: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: COLORS.white,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
+    padding: 20,
+    marginBottom: 20,
+    borderRadius: 10,
+    ...STYLES.shaddow,
   },
   image: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
+    width: 80,
+    height: 80,
+    borderRadius: 40,
     marginRight: 20,
   },
   name: {
     fontSize: 17,
+    flex: 1,
+    marginRight: 20,
+  },
+  icon: {
+    right: 20,
+    position: 'absolute',
   },
 });

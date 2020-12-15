@@ -4,7 +4,7 @@ export interface Character {
   image: string;
   species?: string;
   gender?: string;
-  episode: Episode[];
+  episode?: Episode[];
   status?: string;
 }
 
@@ -21,10 +21,10 @@ export interface CharacterQueryType {
   character: Character;
 }
 export interface Episode {
-  id: string;
+  id?: string;
   name: string;
   air_date: string;
-  episode: string;
+  episode?: string;
 }
 interface Info {
   next: number;

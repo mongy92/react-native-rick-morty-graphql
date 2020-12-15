@@ -46,7 +46,7 @@ export default StyleSheet.create({
     borderTopWidth: 1,
   },
   infoText: {
-    color: COLORS.dark,
+    color: COLORS.orange,
     fontSize: 15,
     alignSelf: 'center',
     fontWeight: '500',
@@ -59,5 +59,11 @@ export default StyleSheet.create({
     paddingVertical: 10,
     fontWeight: 'bold',
     fontSize: 20,
+  },
+  indicator: {
+    alignSelf: 'center',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

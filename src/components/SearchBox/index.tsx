@@ -14,14 +14,15 @@ let SearchBox: React.FC<SearchBoxProps> = ({ containerStyle, ...rest }: SearchBo
   return (
     <View style={[styles.search, containerStyle]}>
       <View style={styles.leftIconPlacholder}>
-        <Icon name={'magnify'} size={25} style={styles.searchIcon} color={COLORS.gray} />
         <TextInput
+          testID="SearchBox"
           maxLength={20}
           autoCapitalize={'none'}
           autoCorrect={false}
           style={styles.textInput}
           {...rest}
         />
+        <Icon name={'magnify'} size={25} style={styles.searchIcon} color={COLORS.gray} />
       </View>
     </View>
   );

@@ -1,17 +1,20 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Episode } from '../../apollo/Types';
+import { Text, View } from 'react-native';
 import { Row } from '../Row';
 import styles from './styles';
-interface EposideCardProps {
-  episode: Episode;
+interface EpisodeCardProp {
+  name: string;
+  air_date: string;
+  index: number;
 }
-
-const EpisodeCard: React.FC<EposideCardProps> = ({ episode }: EposideCardProps) => {
+const EpisodeCard: React.FC<EpisodeCardProp> = ({ name, air_date, index }: EpisodeCardProp) => {
   return (
     <View style={styles.card}>
-      <Row title="Name" value={episode.name} />
-      <Row title="Air Date" value={episode.air_date} />
+      <Text style={styles.countText}>{index + 1} - </Text>
+      <View style={styles.info}>
+        <Row title="Name" value={name} />
+        <Row title="Air Date" value={air_date} />
+      </View>
     </View>
   );
 };

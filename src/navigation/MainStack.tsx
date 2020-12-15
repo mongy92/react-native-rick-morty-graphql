@@ -4,6 +4,7 @@ import Splash from '../screens/Splash';
 import CharacterList from '../screens/CharacterList';
 import CharacterDetails from '../screens/CharacterDetails';
 import { COLORS } from '../common';
+import { StyleSheet } from 'react-native';
 
 const MainStack = createStackNavigator();
 
@@ -14,6 +15,9 @@ export default () => (
       headerTruncatedBackTitle: '',
       headerBackTitle: '',
       headerTitleAlign: 'center',
+      headerStyle: styles.headerStyle,
+      headerTitleStyle: styles.headerTitleStyle,
+      headerLeftContainerStyle: styles.headerLeftContainerStyle,
     }}>
     <MainStack.Screen component={Splash} name="Splash" options={{ headerShown: false }} />
     <MainStack.Screen
@@ -38,3 +42,18 @@ export type MainStackParams = {
     name: string;
   };
 };
+
+const styles = StyleSheet.create({
+  headerStyle: {
+    backgroundColor: COLORS.dark,
+  },
+  headerTitleStyle: {
+    color: COLORS.white,
+    textTransform: 'uppercase',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  headerLeftContainerStyle: {
+    marginLeft: 10,
+  },
+});

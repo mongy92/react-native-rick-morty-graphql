@@ -4,6 +4,7 @@ import React from 'react';
 import { View, Text, ActivityIndicator, Image, FlatList } from 'react-native';
 import { FETCH_CHARACTER_DETAILS } from '../../apollo/Queries';
 import { CharacterQueryType } from '../../apollo/Types';
+import { COLORS } from '../../common';
 import { EpisodeCard } from '../../components';
 import { MainStackParams } from '../../navigation/MainStack';
 import styles from './styles';
@@ -19,7 +20,7 @@ const CharacterDetails = () => {
     return null;
   }
   if (loading) {
-    return <ActivityIndicator size="small" />;
+    return <ActivityIndicator style={styles.indicator} size="large" color={COLORS.koromike} />;
   }
 
   const isDead = data?.character.status === 'Dead';
@@ -38,7 +39,8 @@ const CharacterDetails = () => {
         ( {`${data?.character.species} - ${data?.character.gender}`} )
       </Text>
       <View style={styles.separator} />
-      <Text style={styles.episodesHeaderText}>Episodes</Text>
+      <Text
+        style={styles.episodesHeaderText}>{`Episodes (${data?.character.episode?.length})`}</Text>
     </View>
   );
   return (
@@ -46,7 +48,9 @@ const CharacterDetails = () => {
       ListHeaderComponent={ListHeaderComponent}
       data={data?.character.episode}
       contentContainerStyle={styles.container}
-      renderItem={({ item }) => <EpisodeCard episode={item} />}
+      renderItem={({ item, index }) => (
+        <EpisodeCard index={index} name={item.name} air_date={item.air_date} />
+      )}
     />
   );
 };

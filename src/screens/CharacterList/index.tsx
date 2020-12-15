@@ -1,11 +1,11 @@
 import { useLazyQuery } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Text, View } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import { ActivityIndicator, Platform, Text, View } from 'react-native';
+import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { FETCH_CHARACTERS } from '../../apollo/Queries';
 import { Character, CharactersQueryType } from '../../apollo/Types';
-import { COLORS, STYLES } from '../../common';
+import { ACTIVE_OPCITY, COLORS, STYLES } from '../../common';
 import { CharacterCard, SearchBox } from '../../components';
 import _ from 'lodash';
 import styles from './styles';
@@ -75,17 +75,17 @@ const CharacterList: React.FC = () => {
   /** render footer (loading | no more message | nothing) */
   const renderFooter = () => {
     if (data && loadingMore) {
-      return <ActivityIndicator style={styles.indicator} />;
+      return <ActivityIndicator style={styles.indicator} color={COLORS.koromike} />;
     } else if (showNoMoreMessage) {
       return (
         <View style={styles.noMoreContainer}>
           <Text style={styles.noMoreText}>No More Characters...</Text>
-          <Icon
-            name={'arrow-up'}
-            size={25}
-            color={COLORS.gray}
-            onPress={() => flatlistRef.current.scrollToIndex({ index: 0 })}
-          />
+          <TouchableOpacity
+            style={styles.upIcon}
+            activeOpacity={ACTIVE_OPCITY}
+            onPress={() => flatlistRef.current.scrollToIndex({ index: 0 })}>
+            <Icon name={'arrow-up'} size={25} color={COLORS.white} />
+          </TouchableOpacity>
         </View>
       );
     } else {
@@ -103,7 +103,10 @@ const CharacterList: React.FC = () => {
           searchHander(text);
         }}
       />
-      {loading && <ActivityIndicator style={styles.indicator} size={'small'} />}
+
+      {loading && (
+        <ActivityIndicator color={COLORS.koromike} style={styles.indicator} size={'small'} />
+      )}
       {error ? (
         <Text style={STYLES.errorText}>{errorHandler(error)}</Text>
       ) : (
@@ -114,11 +117,11 @@ const CharacterList: React.FC = () => {
             renderItem={({ item }) => (
               <CharacterCard character={item} onPress={() => onPressCharacter(item)} />
             )}
-            ItemSeparatorComponent={() => <View style={STYLES.separator} />}
+            // ItemSeparatorComponent={() => <View style={STYLES.separator} />}
             ListFooterComponent={renderFooter}
             contentContainerStyle={styles.list}
             keyExtractor={(item) => `${item.id}`}
-            onEndReachedThreshold={0}
+            onEndReachedThreshold={Platform.OS == 'ios' ? 0 : 0.2}
             onEndReached={loadMoreHandler}
           />
         )
