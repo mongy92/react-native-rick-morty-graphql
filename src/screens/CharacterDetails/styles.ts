@@ -46,7 +46,7 @@ export default StyleSheet.create({
     borderTopWidth: 1,
   },
   infoText: {
-    color: COLORS.orange,
+    color: COLORS.koromike,
     fontSize: 15,
     alignSelf: 'center',
     fontWeight: '500',

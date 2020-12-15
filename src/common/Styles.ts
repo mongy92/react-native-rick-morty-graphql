@@ -8,15 +8,10 @@ export const COLORS = {
   black: '#000',
   green: 'green',
   red: 'red',
-  orange: 'orange',
 
   koromike: '#ffba5e',
-  river_bed: '#454b5f',
 };
 export const STYLES = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   separator: {
     borderTopWidth: 1,
     borderTopColor: COLORS.offWhite,

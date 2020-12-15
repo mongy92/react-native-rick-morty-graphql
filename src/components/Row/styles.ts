@@ -15,7 +15,6 @@ export default StyleSheet.create({
     flex: 1,
   },
   valueStyle: {
-    // flexDirection: 'row',
     flexShrink: 1,
     flex: 3,
     color: COLORS.dark,

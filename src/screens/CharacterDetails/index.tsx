@@ -4,7 +4,7 @@ import React from 'react';
 import { View, Text, ActivityIndicator, Image, FlatList } from 'react-native';
 import { FETCH_CHARACTER_DETAILS } from '../../apollo/Queries';
 import { CharacterQueryType } from '../../apollo/Types';
-import { COLORS } from '../../common';
+import { COLORS, STRINGS } from '../../common';
 import { EpisodeCard } from '../../components';
 import { MainStackParams } from '../../navigation/MainStack';
 import styles from './styles';
@@ -40,7 +40,9 @@ const CharacterDetails = () => {
       </Text>
       <View style={styles.separator} />
       <Text
-        style={styles.episodesHeaderText}>{`Episodes (${data?.character.episode?.length})`}</Text>
+        style={
+          styles.episodesHeaderText
+        }>{`${STRINGS.episodes} (${data?.character.episode?.length})`}</Text>
     </View>
   );
   return (

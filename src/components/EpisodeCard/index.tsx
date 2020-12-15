@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import { STRINGS } from '../../common';
 import { Row } from '../Row';
 import styles from './styles';
 interface EpisodeCardProp {
@@ -12,8 +13,8 @@ const EpisodeCard: React.FC<EpisodeCardProp> = ({ name, air_date, index }: Episo
     <View style={styles.card}>
       <Text style={styles.countText}>{index + 1} - </Text>
       <View style={styles.info}>
-        <Row title="Name" value={name} />
-        <Row title="Air Date" value={air_date} />
+        <Row title={STRINGS.name} value={name} />
+        <Row title={STRINGS.air_date} value={air_date} />
       </View>
     </View>
   );

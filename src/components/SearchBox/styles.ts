@@ -28,8 +28,4 @@ export default StyleSheet.create({
   searchIcon: {
     marginRight: 10,
   },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-    zIndex: 999,
-  },
 });

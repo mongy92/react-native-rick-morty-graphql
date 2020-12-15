@@ -5,7 +5,7 @@ import { ActivityIndicator, Platform, Text, View } from 'react-native';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { FETCH_CHARACTERS } from '../../apollo/Queries';
 import { Character, CharactersQueryType } from '../../apollo/Types';
-import { ACTIVE_OPCITY, COLORS, STYLES } from '../../common';
+import { ACTIVE_OPCITY, COLORS, STRINGS, STYLES } from '../../common';
 import { CharacterCard, SearchBox } from '../../components';
 import _ from 'lodash';
 import styles from './styles';
@@ -79,7 +79,7 @@ const CharacterList: React.FC = () => {
     } else if (showNoMoreMessage) {
       return (
         <View style={styles.noMoreContainer}>
-          <Text style={styles.noMoreText}>No More Characters...</Text>
+          <Text style={styles.noMoreText}>{STRINGS.noMoreChars}</Text>
           <TouchableOpacity
             style={styles.upIcon}
             activeOpacity={ACTIVE_OPCITY}
