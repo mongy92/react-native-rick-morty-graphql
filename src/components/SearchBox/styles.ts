@@ -3,7 +3,7 @@ import { COLORS, STYLES } from '../../common';
 
 export default StyleSheet.create({
   search: {
-    height: 60,
+    height: 50,
     backgroundColor: COLORS.white,
     margin: 20,
     borderRadius: 10,

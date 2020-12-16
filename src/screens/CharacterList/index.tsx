@@ -1,7 +1,7 @@
 import { useLazyQuery } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Platform, Text, View } from 'react-native';
+import { ActivityIndicator, Platform, View, Text } from 'react-native';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { FETCH_CHARACTERS } from '../../apollo/Queries';
 import { Character, CharactersQueryType } from '../../apollo/Types';

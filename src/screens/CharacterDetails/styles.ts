@@ -27,7 +27,7 @@ export default StyleSheet.create({
   statusText: {
     fontSize: 16,
     color: COLORS.green,
-    fontWeight: '500',
+    fontWeight: 'bold',
   },
   deadStatusText: {
     color: COLORS.red,
@@ -49,7 +49,7 @@ export default StyleSheet.create({
     color: COLORS.koromike,
     fontSize: 15,
     alignSelf: 'center',
-    fontWeight: '500',
+    fontWeight: 'bold',
     marginBottom: 10,
   },
   episodesHeaderText: {
