@@ -2,7 +2,7 @@
 A Demo Application for listing Rick and Morty Characters with the abilty to search and view the details for each character
 
 ## IMPORTANT NOTE
-I am using API provided by https://rickandmortyapi.com/graphql
+I am using API provided by https://rickandmortyapi.com/documentation/
 
 ## Main technologies used
 - React Native
