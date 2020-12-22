@@ -11,6 +11,7 @@ import styles from './styles';
 
 const CharacterDetails = () => {
   const { params } = useRoute<RouteProp<MainStackParams, 'CharacterDetails'>>();
+
   const { loading, data, error } = useQuery<CharacterQueryType>(FETCH_CHARACTER_DETAILS, {
     variables: {
       id: params.id,
@@ -29,6 +30,7 @@ const CharacterDetails = () => {
     status === 'Dead' ? COLORS.red : status === 'Alive' ? COLORS.green : COLORS.orange;
   const statusStyle = { backgroundColor: statusColor };
   const statusTextStyle = { color: statusColor };
+
   const ListHeaderComponent = () => (
     <View>
       <Image source={{ uri: data?.character.image }} style={styles.image} />

@@ -11,6 +11,7 @@ const Splash = () => {
       navigation.reset({ routes: [{ name: 'CharacterList' }] });
     }, 2000);
   }, []);
+
   return <ImageBackground style={STYLES.container} source={IMAGES.splash} />;
 };
 

@@ -4,6 +4,7 @@ import client from './apollo/client';
 import { ApolloProvider } from '@apollo/client';
 import { StatusBar } from 'react-native';
 import { COLORS } from './common';
+
 const App = () => {
   return (
     <ApolloProvider client={client}>

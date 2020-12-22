@@ -2,7 +2,6 @@ import { useLazyQuery } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Platform, View, Text } from 'react-native';
-import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { FETCH_CHARACTERS } from '../../apollo/Queries';
 import { Character, CharactersQueryType } from '../../apollo/Types';
 import { ACTIVE_OPCITY, COLORS, STRINGS, STYLES } from '../../common';
@@ -11,6 +10,7 @@ import _ from 'lodash';
 import styles from './styles';
 import { errorHandler } from '../../utils';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { FlatList, TouchableOpacity } from 'react-native';
 
 const CharacterList: React.FC = () => {
   const navigation = useNavigation();
